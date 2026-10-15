@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to Excel &amp; Excel to CSV Converter — Free, No Signup</title>
+    <meta name="description" content="Free online converter between CSV and Excel (.xlsx, .xls). Runs entirely in your browser — your files never leave your device.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>CSV ↔ Excel Converter</h1>
+            <p class="lede">Convert <strong>CSV to Excel</strong> or <strong>Excel to CSV</strong> in one click. 100% free, no signup, no uploads to any server — everything runs in your browser.</p>
+        </header>
+
+        <main>
+            <section class="tool-card" aria-labelledby="upload-heading">
+                <h2 id="upload-heading" class="sr-only">Upload your file</h2>
+
+                <label for="fileInput" id="dropZone" class="drop-zone" tabindex="0">
+                    <div class="drop-zone-inner">
+                        <div class="drop-icon" aria-hidden="true">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                        </div>
+                        <div class="drop-text">
+                            <strong>Drop your file here</strong> or <span class="link-like">browse</span>
+                        </div>
+                        <div class="drop-hint">Supports .csv, .xlsx, .xls — up to 50 MB</div>
+                    </div>
+                    <input type="file" id="fileInput" accept=".csv,.xlsx,.xls,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+                </label>
+
+                <div id="fileInfo" class="file-info" hidden>
+                    <div class="file-meta">
+                        <div class="file-name" id="fileName"></div>
+                        <div class="file-size" id="fileSize"></div>
+                    </div>
+                    <button type="button" id="clearBtn" class="btn-ghost" aria-label="Remove file">Remove</button>
+                </div>
+
+                <div id="convertRow" class="convert-row" hidden>
+                    <div class="direction">
+                        <span class="direction-label">Convert to</span>
+                        <div class="segmented" role="radiogroup" aria-label="Output format">
+                            <button type="button" class="seg-btn" data-target="xlsx" role="radio" aria-checked="false">Excel (.xlsx)</button>
+                            <button type="button" class="seg-btn" data-target="csv" role="radio" aria-checked="false">CSV (.csv)</button>
+                        </div>
+                    </div>
+                    <button type="button" id="convertBtn" class="btn-primary">Convert &amp; Download</button>
+                </div>
+
+                <div id="status" class="status" hidden role="status" aria-live="polite"></div>
+            </section>
+
+            <section class="features">
+                <div class="feature">
+                    <h3>Private by default</h3>
+                    <p>Conversion happens entirely in your browser. Your file is never uploaded, stored, or seen by anyone else.</p>
+                </div>
+                <div class="feature">
+                    <h3>Any direction</h3>
+                    <p>CSV → Excel (.xlsx) or Excel → CSV. We auto-detect your input and pick the opposite format.</p>
+                </div>
+                <div class="feature">
+                    <h3>No signup, no limits</h3>
+                    <p>Free forever. No watermarks, no email required, no daily caps. Just drop a file and get the output.</p>
+                </div>
+            </section>
+
+            <section class="faq">
+                <h2>Questions people ask</h2>
+
+                <details>
+                    <summary>Is this really free?</summary>
+                    <p>Yes. No account, no payment, no watermark. The tool runs in your browser using open-source libraries.</p>
+                </details>
+
+                <details>
+                    <summary>Do you upload my file to a server?</summary>
+                    <p>No. The file never leaves your device. All parsing and conversion happens locally in JavaScript.</p>
+                </details>
+
+                <details>
+                    <summary>Which Excel formats do you support?</summary>
+                    <p>Reading: .xlsx and legacy .xls. Writing: .xlsx (modern Excel, works in Excel, Numbers, Google Sheets, LibreOffice).</p>
+                </details>
+
+                <details>
+                    <summary>What about multi-sheet Excel files?</summary>
+                    <p>When converting Excel to CSV, we export the first sheet. For multi-sheet workbooks, open the file in Excel and export each sheet separately if you need all of them.</p>
+                </details>
+
+                <details>
+                    <summary>What is the file-size limit?</summary>
+                    <p>Browser memory is the only limit. Files up to ~50 MB generally work fine on modern laptops. Very large CSVs may be slow — try splitting them first.</p>
+                </details>
+
+                <details>
+                    <summary>Does it handle semicolons, tabs, or commas?</summary>
+                    <p>Yes. The CSV parser auto-detects common delimiters (comma, semicolon, tab) and handles quoted fields and UTF-8 correctly.</p>
+                </details>
+            </section>
+        </main>
+
+        <footer>
+            <p>Free tool. No tracking. Built with <a href="https://sheetjs.com" target="_blank" rel="noopener">SheetJS</a>.</p>
+        </footer>
+    </div>
+</body>
+</html>
